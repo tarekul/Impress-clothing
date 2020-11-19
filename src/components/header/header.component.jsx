@@ -10,6 +10,9 @@ import "./header.styles.scss";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectCartHide } from "../../redux/cart/cart.selectors";
+
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link className="logo-container" to="/">
@@ -38,8 +41,8 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-  hidden: state.cart.hidden,
+  currentUser: selectCurrentUser(state),
+  hidden: selectCartHide(state),
 });
 
 export default connect(mapStateToProps)(Header);
